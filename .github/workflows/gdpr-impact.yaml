@@ -1,0 +1,3 @@
+# Add GDPR impact assessment:
+# Create .github/workflows/gdpr-impact.yaml
+# Add step to run npx gdpr-audit --country=${{ matrix.country }}

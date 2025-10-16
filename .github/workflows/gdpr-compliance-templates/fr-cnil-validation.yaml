@@ -1,0 +1,20 @@
+# .github/workflows/bitrix-sync-validation.yaml
+name: Bitrix24 Sync Verification
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Verify FR Bitrix24 endpoints
+        run: |
+          if ! grep -q "https://bitrix24.fr" src/global/compliance/bitrix-config.js; then
+            echo "ERROR: Francia Bitrix24 endpoint missing"
+            exit 1
+          fi
